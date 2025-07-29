@@ -1,0 +1,65 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.bodySection {
+  display: flex;
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 283px;
+  background-color: $background-color;
+  padding-top: 0;
+
+  @include respond(desktop) {
+    margin-left: 240px;
+  }
+
+  @include respond(tablet) {
+    margin-left: 0;
+  }
+}
+
+.content {
+  padding: $spacing-xl $spacing-xxl;
+
+  @include respond(tablet) {
+    padding: $spacing-lg;
+  }
+
+  h1 {
+    font-size: $font-size-xxl;
+    color: $primary-color;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+
+  @include respond(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.usersTableContainer {
+  background-color: $light-text;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+  overflow-x: auto;
+}

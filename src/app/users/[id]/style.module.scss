@@ -1,0 +1,251 @@
+@import "@/styles/variables";
+
+.userDetailsContainer {
+  @extend .dashboardContainer;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  color: $text-color;
+  margin-bottom: $spacing-lg;
+  cursor: pointer;
+  font-size: $font-size-md;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    font-size: $font-size-xxl;
+    color: $primary-color;
+  }
+
+  @include respond(tablet) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: $spacing-md;
+
+  button {
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .blacklistButton {
+    border: 1px solid $error-color;
+    color: $error-color;
+    background-color: transparent;
+
+    &:hover {
+      background-color: rgba($error-color, 0.1);
+    }
+  }
+
+  .activateButton {
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+    background-color: transparent;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.1);
+    }
+  }
+
+  @include respond(phone) {
+    width: 100%;
+
+    button {
+      flex: 1;
+      padding: $spacing-md;
+    }
+  }
+}
+
+.userProfile {
+  background-color: $light-text;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+
+  @include respond(tablet) {
+    padding: $spacing-lg;
+  }
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-xl;
+
+  @include respond(desktop) {
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .nameSection {
+    flex: 1;
+
+    h2 {
+      font-size: $font-size-xl;
+      color: $primary-color;
+      margin-bottom: $spacing-xs;
+    }
+
+    p {
+      color: $text-color;
+    }
+  }
+
+  .userTier {
+    padding: $spacing-md;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+
+    p {
+      color: $text-color;
+      margin-bottom: $spacing-xs;
+    }
+
+    .stars {
+      color: $warning-color;
+    }
+  }
+
+  .bankInfo {
+    h3 {
+      font-size: $font-size-xl;
+      color: $primary-color;
+      margin-bottom: $spacing-xs;
+    }
+
+    p {
+      color: $text-color;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid $border-color;
+  margin-top: $spacing-xl;
+
+  button {
+    padding: $spacing-md $spacing-xl;
+    color: $text-color;
+    font-weight: 600;
+    position: relative;
+
+    &.activeTab {
+      color: $secondary-color;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $secondary-color;
+      }
+    }
+
+    &:hover:not(.activeTab) {
+      color: $primary-color;
+    }
+  }
+
+  @include respond(tablet) {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+.detailsSection {
+  background-color: $light-text;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-xl;
+
+  @include respond(tablet) {
+    padding: $spacing-lg;
+  }
+}
+
+.section {
+  margin-bottom: $spacing-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-size: $font-size-lg;
+    color: $primary-color;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-sm;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+
+  @include respond(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailItem {
+  .detailLabel {
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    color: $text-color;
+    margin-bottom: $spacing-xs;
+  }
+
+  .detailValue {
+    font-size: $font-size-md;
+    color: $primary-color;
+    font-weight: 500;
+  }
+}

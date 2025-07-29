@@ -1,0 +1,73 @@
+@use "@/styles/mixins" as *;
+@import "@/styles/variables";
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  th,
+  td {
+    padding: $spacing-md;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    font-weight: 600;
+    color: $text-color;
+    text-transform: uppercase;
+    font-size: $font-size-xs;
+  }
+
+  tr:hover {
+    background-color: rgba($secondary-color, 0.05);
+  }
+
+  .viewButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-xs;
+  }
+
+  @include respond(tablet) {
+    display: block;
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: $spacing-lg;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-md;
+    }
+
+    td {
+      display: block;
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &::before {
+        content: attr(data-label);
+        position: absolute;
+        left: $spacing-md;
+        width: calc(50% - #{$spacing-md});
+        padding-right: $spacing-md;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: $font-size-xs;
+        color: $text-color;
+      }
+    }
+  }
+}

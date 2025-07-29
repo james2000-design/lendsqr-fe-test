@@ -1,0 +1,134 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+.sidebar {
+  width: 283px;
+  background-color: $light-text;
+  box-shadow: $shadow-md;
+  padding: $spacing-xl 0;
+  height: calc(100vh - 80px);
+  position: fixed;
+  top: 80px;
+  overflow-y: auto;
+  z-index: 100;
+
+  @include respond(desktop) {
+    width: 240px;
+  }
+
+  @include respond(tablet) {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.organization {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 0 $spacing-xl $spacing-xl;
+  cursor: pointer;
+
+  span {
+    font-size: $font-size-md;
+    color: $text-color;
+  }
+
+  img {
+    transition: transform 0.3s;
+  }
+
+  &:hover {
+    span {
+      color: $primary-color;
+    }
+
+    img:last-child {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.dashboardLink {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-lg $spacing-xl;
+  margin-bottom: $spacing-xl;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+
+  span {
+    font-size: $font-size-md;
+    color: $text-color;
+  }
+
+  &:hover {
+    span {
+      color: $primary-color;
+    }
+  }
+
+  &.active {
+    border-left-color: $secondary-color;
+    background-color: rgba($secondary-color, 0.1);
+
+    span {
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+.menuSection {
+  margin-bottom: $spacing-xl;
+
+  h4 {
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    color: $text-color;
+    padding: 0 $spacing-xl $spacing-md;
+  }
+}
+
+.menuList {
+  list-style: none;
+}
+
+.menuItem {
+  a {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-xl;
+    transition: all 0.3s;
+
+    span {
+      font-size: $font-size-md;
+      color: $text-color;
+    }
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.1);
+
+      span {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &.active {
+    a {
+      background-color: rgba($secondary-color, 0.1);
+      border-left: 3px solid $secondary-color;
+
+      span {
+        color: $primary-color;
+        font-weight: 500;
+      }
+    }
+  }
+}

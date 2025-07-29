@@ -1,0 +1,35 @@
+@use "@/styles/mixins" as *;
+@import "@/styles/variables";
+.userCard {
+  background-color: $light-text;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  gap: $spacing-lg;
+  flex-direction: column;
+  margin-bottom: $spacing-md;
+
+  h3 {
+    font-size: $font-size-xs;
+    color: $text-color;
+    text-transform: uppercase;
+  }
+}
+
+.cardValue {
+  font-size: $font-size-md;
+  color: $primary-color;
+  font-weight: bold;
+  margin-bottom: $spacing-sm;
+}

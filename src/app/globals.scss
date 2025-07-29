@@ -1,0 +1,81 @@
+@use "@/styles/mixins" as *;
+@import "@/styles/variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Responsive table styles
+@media (max-width: 900px) {
+  table {
+    width: 100%;
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: $spacing-lg;
+      border: 1px solid $border-color;
+      border-radius: $border-radius-md;
+    }
+
+    td {
+      display: block;
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &::before {
+        content: attr(data-label);
+        position: absolute;
+        left: $spacing-md;
+        width: calc(50% - #{$spacing-md});
+        padding-right: $spacing-md;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: $font-size-xs;
+        color: $text-color;
+      }
+    }
+  }
+}
