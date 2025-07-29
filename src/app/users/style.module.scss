@@ -1,77 +1,69 @@
-@import "@/styles/variables";
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
 
-.usersContainer {
-  @extend .dashboardContainer;
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.usersTable {
+.bodySection {
+  display: flex;
   width: 100%;
-  border-collapse: collapse;
-  font-size: $font-size-sm;
+  overflow-x: hidden;
+}
 
-  th,
-  td {
-    padding: $spacing-md;
-    text-align: left;
-    border-bottom: 1px solid $border-color;
-  }
+.mainContent {
+  flex: 1;
+  margin-left: 283px;
+  background-color: $background-color;
+  padding-top: 80px;
+  overflow-x: hidden;
 
-  th {
-    font-weight: 600;
-    color: $text-color;
-    text-transform: uppercase;
-    font-size: $font-size-xs;
-  }
-
-  tr:hover {
-    background-color: rgba($secondary-color, 0.05);
+  @include respond(desktop) {
+    margin-left: 240px;
   }
 
   @include respond(tablet) {
-    display: block;
-
-    thead {
-      display: none;
-    }
-
-    tr {
-      display: block;
-      margin-bottom: $spacing-lg;
-      border: 1px solid $border-color;
-      border-radius: $border-radius-md;
-    }
-
-    td {
-      display: block;
-      text-align: right;
-      padding-left: 50%;
-      position: relative;
-
-      &::before {
-        content: attr(data-label);
-        position: absolute;
-        left: $spacing-md;
-        width: calc(50% - #{$spacing-md});
-        padding-right: $spacing-md;
-        text-align: left;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: $font-size-xs;
-        color: $text-color;
-      }
-    }
+    margin-left: 0;
   }
 }
 
-.viewButton {
-  color: $secondary-color;
-  background-color: rgba($secondary-color, 0.1);
-  padding: $spacing-xs $spacing-sm;
-  border-radius: $border-radius-sm;
-  font-size: $font-size-xs;
-  transition: all 0.3s;
+.content {
+  padding: $spacing-xl $spacing-xxl;
 
-  &:hover {
-    background-color: rgba($secondary-color, 0.2);
+  @include respond(tablet) {
+    padding: $spacing-lg;
   }
+
+  h1 {
+    font-size: $font-size-xxl;
+    color: $primary-color;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+
+  @include respond(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.usersTableContainer {
+  background-color: $light-text;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+  overflow-x: auto;
 }

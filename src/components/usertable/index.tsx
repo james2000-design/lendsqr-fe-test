@@ -1,9 +1,9 @@
-// src/components/UserTable/index.tsx
 import React from "react";
 import styles from "./style.module.scss";
 import { User } from "@/types/users";
 import StatusBadge from "@/components/stausBadge/status-badge";
-import Image from "next/image";
+import { IoIosMore } from "react-icons/io";
+import { IoFilterOutline } from "react-icons/io5";
 
 interface UserTableProps {
   users: User[];
@@ -14,19 +14,50 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
     <table className={styles.userTable}>
       <thead>
         <tr>
-          <th>ORGANIZATION</th>
-          <th>USERNAME</th>
-          <th>EMAIL</th>
-          <th>PHONE NUMBER</th>
-          <th>DATE JOINED</th>
-          <th>STATUS</th>
+          <th>
+            <span className={styles.headerCell}>
+              ORGANIZATION
+              <IoFilterOutline size={14} />
+            </span>
+          </th>
+          <th>
+            <span className={styles.headerCell}>
+              USERNAME
+              <IoFilterOutline size={14} />
+            </span>
+          </th>
+          <th>
+            <span className={styles.headerCell}>
+              EMAIL
+              <IoFilterOutline size={14} />
+            </span>
+          </th>
+          <th>
+            <span className={styles.headerCell}>
+              PHONE NUMBER
+              <IoFilterOutline size={14} />
+            </span>
+          </th>
+          <th>
+            <span className={styles.headerCell}>
+              DATE JOINED
+              <IoFilterOutline size={14} />
+            </span>
+          </th>
+          <th>
+            <span className={styles.headerCell}>
+              STATUS
+              <IoFilterOutline size={18} />
+            </span>
+          </th>
           <th></th>
         </tr>
       </thead>
+
       <tbody>
         {users.map((user) => (
           <tr key={user.id}>
-            <td>{user.organization}</td>
+            <td>{user.organization} </td>
             <td>{user.username}</td>
             <td>{user.email}</td>
             <td>{user.phoneNumber}</td>
@@ -36,12 +67,7 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
             </td>
             <td>
               <button className={styles.viewButton}>
-                <Image
-                  src="/assets/images/more.png"
-                  alt="View Details"
-                  width={20}
-                  height={20}
-                />
+                <IoIosMore size={24} />
               </button>
             </td>
           </tr>

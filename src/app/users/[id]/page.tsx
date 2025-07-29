@@ -1,24 +1,20 @@
+"use client";
+
 import React from "react";
 import styles from "./style.module.scss";
 import Sidebar from "@/components/sidebar/side-bar";
 import Navbar from "@/components/navbar/navbar";
 import { useLocalStorage } from "@/app/lib/hooks/useLocalStorage";
-import { useRouter } from "next/router";
-import StatusBadge from "@/components/stausBadge/status-badge";
+import { useRouter, useParams } from "next/navigation";
 import Image from "next/image";
 import { User } from "@/types/users";
 
 const UserDetailsPage = () => {
   const router = useRouter();
-  const { id } = router.query;
-  const [user] = useLocalStorage<User | null>(`user_${id}`, null);
+  const params = useParams();
+  const id = params.id as string;
 
-  // In a real app, you would fetch the user data here if not in localStorage
-  // useEffect(() => {
-  //   if (!user) {
-  //     fetchUser(id).then(data => setUser(data));
-  //   }
-  // }, [id, user, setUser]);
+  const [user] = useLocalStorage<User | null>(`user_${id}`, null);
 
   if (!user) {
     return <div>Loading...</div>;

@@ -1,7 +1,11 @@
-@import "@/styles/variables";
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
 
 .userDetailsContainer {
-  @extend .dashboardContainer;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .backButton {

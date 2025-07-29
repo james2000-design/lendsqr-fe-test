@@ -7,8 +7,10 @@
   padding: $spacing-lg $spacing-xxl;
   background-color: $light-text;
   box-shadow: $shadow-sm;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 90;
 
   @include respond(tablet) {

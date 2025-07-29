@@ -1,0 +1,71 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.paginationWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $spacing-lg;
+  padding: $spacing-md 0;
+  border-top: 1px solid $border-color;
+  flex-wrap: wrap;
+}
+
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  color: $text-color;
+
+  span {
+    margin: 0 0.5rem;
+  }
+
+  .pageSizeSelect {
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    background: $background-color;
+    font-size: $font-size-sm;
+    color: $text-color;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid $border-color;
+    background: transparent;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    color: $text-color;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) {
+      background: rgba($primary-color, 0.1);
+      border-color: $primary-color;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: $light-text;
+      border-color: $primary-color;
+    }
+  }
+
+  .ellipsis {
+    padding: 0 0.5rem;
+    color: $text-color;
+  }
+}

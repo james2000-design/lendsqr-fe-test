@@ -1,22 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
 import styles from "./style.module.scss";
 import Sidebar from "@/components/sidebar/side-bar";
 import Navbar from "@/components/navbar/navbar";
 import UserCard from "@/components/userCard";
 import UserTable from "@/components/usertable";
-import Pagination from "@/components/pagination";
+
 import userIcon from "../../../public/assets/images/users.png";
 import activeUser from "../../../public/assets/images/user.png";
 import Userloan from "../../../public/assets/images/icon.png";
 import UserSavings from "../../../public/assets/images/icons.png";
 import { generateMockUsers } from "../lib/utils/mockData";
 
-export default function DashboardPage() {
-  const [currentPage, setCurrentPage] = useState(1);
+export default function UserPage() {
   const pageSize = 10;
-  const totalUsers = 500;
 
   const stats = [
     { title: "USERS", value: "2,453", icon: userIcon },
@@ -25,11 +22,7 @@ export default function DashboardPage() {
     { title: "USERS WITH SAVINGS", value: "102,453", icon: UserSavings },
   ];
 
-  const { users } = generateMockUsers(currentPage, pageSize);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  const { users } = generateMockUsers(pageSize, pageSize);
 
   return (
     <div className={styles.dashboardContainer}>
@@ -51,12 +44,6 @@ export default function DashboardPage() {
             </div>
             <div className={styles.usersTableContainer}>
               <UserTable users={users} />
-              <Pagination
-                currentPage={currentPage}
-                pageSize={pageSize}
-                totalCount={totalUsers}
-                onPageChange={handlePageChange}
-              />
             </div>
           </div>
         </main>

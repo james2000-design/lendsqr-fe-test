@@ -87,7 +87,7 @@ const Sidebar = () => {
 
       <div className={styles.dashboardLink}>
         <Image src={homeIcon} alt="Dashboard" width={16} height={16} />
-        <span>Dashboard</span>
+        <Link href={"/dashboard"}>Dashboard</Link>
       </div>
 
       <div className={styles.menuSection}>

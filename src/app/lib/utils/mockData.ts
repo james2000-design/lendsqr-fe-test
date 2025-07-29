@@ -42,7 +42,14 @@ export const generateMockUsers = (
   const startIndex = (page - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, total);
 
-  const organizations = ["Lendstar", "Lendsqr", "Irorun", "Lendagr"];
+  const organizations = [
+    "Lendstar",
+    "Lendsqr",
+    "Irorun",
+    "Lendagr",
+    "borrow",
+    "Lenders",
+  ];
   const statuses: ("active" | "inactive" | "pending" | "blacklisted")[] = [
     "active",
     "inactive",
