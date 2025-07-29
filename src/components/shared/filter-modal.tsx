@@ -1,6 +1,18 @@
 "use client";
 
-import { Menu } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+
+import { Button } from "@chakra-ui/react/button";
+import { Input } from "@chakra-ui/react/input";
+import { Select } from "@chakra-ui/react/select";
+
 import { useForm } from "react-hook-form";
 
 interface FilterModalProps {
@@ -32,8 +44,7 @@ export default function FilterModal({
             <Select
               placeholder="Organization"
               {...register("organization")}
-              mb={3}
-            >
+              mb={3}>
               <option value="Lendsqr">Lendsqr</option>
               <option value="Irorun">Irorun</option>
             </Select>
