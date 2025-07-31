@@ -4,7 +4,6 @@ import UserCard from "@/components/usercard/index";
 import styles from "@/components/usercard/style.module.scss";
 import type { ImageProps } from "next/image";
 
-// ✅ Mock next/image for Jest only — no recursion, type-safe
 jest.mock("next/image", () => {
   const MockImage = ({ src, alt, ...rest }: ImageProps) => {
     return (
