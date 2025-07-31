@@ -18,7 +18,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const start = (currentPage - 1) * pageSize + 1;
   const end = Math.min(currentPage * pageSize, totalCount);
 
-  const generatePageNumbers = () => {
+  const generatePageNumbers = (): (number | string)[] => {
     const pages: (number | string)[] = [];
 
     if (totalPages <= 7) {
@@ -67,21 +67,24 @@ const Pagination: React.FC<PaginationProps> = ({
           &lt;
         </button>
 
-        {generatePageNumbers().map((item, index) =>
-          typeof item === "string" ? (
-            <span key={index || item} className={styles.ellipsis}>
+        {generatePageNumbers().map((item, index) => {
+          const key =
+            typeof item === "number" ? `page-${item}` : `ellipsis-${index}`;
+
+          return typeof item === "string" ? (
+            <span key={key} className={styles.ellipsis}>
               {item}
             </span>
           ) : (
             <button
-              key={item}
+              key={key}
               className={currentPage === item ? styles.active : ""}
               onClick={() => onPageChange(item)}
             >
               {item}
             </button>
-          )
-        )}
+          );
+        })}
 
         <button
           onClick={() => onPageChange(currentPage + 1)}

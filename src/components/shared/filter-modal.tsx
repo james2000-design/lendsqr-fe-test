@@ -97,7 +97,12 @@ export default function FilterDropdown({ onApply }: FilterDropdownProps) {
           </Box>
 
           <Box mb={3}>
-            <TextField fullWidth label="Username" {...register("username")} />
+            <TextField
+              fullWidth
+              label="Username"
+              placeholder="username"
+              {...register("username")}
+            />
           </Box>
 
           <Box mb={3}>

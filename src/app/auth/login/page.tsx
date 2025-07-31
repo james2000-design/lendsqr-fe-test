@@ -15,10 +15,8 @@ export default function LoginPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Store fake auth status in localStorage
     localStorage.setItem("isLoggedIn", "true");
 
-    // Redirect to dashboard
     router.push("/dashboard");
   };
 

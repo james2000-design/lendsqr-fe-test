@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
     <nav className={styles.navbar}>
       <div className={styles.left}>
         <button className={styles.mobileMenuButton} onClick={onMenuClick}>
-          <FiMenu size={22} />
+          <FiMenu size={22} data-testid="mobile-menu-button" />
         </button>
         <Image src={Logo} alt="Logo" />
       </div>
@@ -36,7 +36,10 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
         <Link href="#" className={styles.navLink}>
           Docs
         </Link>
-        <IoNotificationsOutline size={24} />
+        <IoNotificationsOutline
+          size={24}
+          data-testid="navbar-notification-icon"
+        />
 
         <div className={styles.userMenu}>
           <div className={styles.avatar}>

@@ -82,6 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       <button
         className={`${styles.overlay} ${isOpen ? styles.show : ""}`}
         onClick={onClose}
+        data-testid="sidebar-overlay"
       />
 
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
