@@ -14,15 +14,25 @@ const UserDetails = ({ id }: UserDetailsProps) => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    const storedUser = localStorage.getItem(`user_${id}`);
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    let foundUser: User | null = null;
+    try {
+      const storedUser = localStorage.getItem(`user_${id}`);
+      if (storedUser) {
+        foundUser = JSON.parse(storedUser) as User;
+      } else {
+        const allUsersRaw = localStorage.getItem("all_users") || "[]";
+        const allUsers = JSON.parse(allUsersRaw) as User[];
+        foundUser = allUsers.find((user) => user.id === id) || null;
+      }
+    } catch (error) {
+      console.error("Error reading/parsing user data", error);
+      foundUser = null;
+    }
+
+    if (!foundUser?.fullName || !foundUser?.username) {
+      setUser(null);
     } else {
-      const allUsers = JSON.parse(localStorage.getItem("all_users") || "[]");
-      const found = allUsers.find(
-        (user: User) => String(user.id) === String(id)
-      );
-      if (found) setUser(found);
+      setUser(foundUser);
     }
   }, [id]);
 

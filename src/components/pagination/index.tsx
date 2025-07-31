@@ -15,8 +15,11 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
 }) => {
   const totalPages = Math.ceil(totalCount / pageSize);
-  const start = (currentPage - 1) * pageSize + 1;
-  const end = Math.min(currentPage * pageSize, totalCount);
+  const disablePrev = totalPages === 0 || currentPage <= 1;
+  const disableNext = totalPages === 0 || currentPage >= totalPages;
+  const start = totalCount === 0 ? 0 : (currentPage - 1) * pageSize + 1;
+  const end =
+    totalCount === 0 ? 0 : Math.min(currentPage * pageSize, totalCount);
 
   const generatePageNumbers = (): (number | string)[] => {
     const pages: (number | string)[] = [];
@@ -62,7 +65,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <div className={styles.pagination}>
         <button
           onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          disabled={disablePrev}
         >
           &lt;
         </button>
@@ -88,7 +91,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
         <button
           onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          disabled={disableNext}
         >
           &gt;
         </button>

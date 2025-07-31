@@ -105,4 +105,34 @@ describe("UserTable", () => {
     expect(screen.getByText(/^active$/i)).toBeInTheDocument();
     expect(screen.getByText(/^inactive$/i)).toBeInTheDocument();
   });
+  it("shows a no users found message when users array is empty", () => {
+    render(<UserTable users={[]} onApplyFilters={jest.fn()} />);
+    expect(screen.getByText(/no users found/i)).toBeInTheDocument();
+  });
+  it("passes correct filter values when filter is applied", () => {
+    const mockOnApply = jest.fn();
+    render(<UserTable users={mockUsers} onApplyFilters={mockOnApply} />);
+
+    fireEvent.click(screen.getAllByText(/filter/i)[0]);
+
+    expect(mockOnApply).toHaveBeenCalledWith({});
+  });
+
+  it("handles missing fields gracefully", () => {
+    const incompleteUsers = [
+      { id: "1", username: "user1" } as Partial<User> as User,
+    ];
+    render(<UserTable users={incompleteUsers} onApplyFilters={jest.fn()} />);
+    expect(screen.getByText("user1")).toBeInTheDocument();
+  });
+  it("all filter buttons call onApplyFilters when clicked", () => {
+    const mockOnApply = jest.fn();
+    render(<UserTable users={mockUsers} onApplyFilters={mockOnApply} />);
+
+    screen.getAllByText(/filter/i).forEach((btn) => {
+      fireEvent.click(btn);
+    });
+
+    expect(mockOnApply).toHaveBeenCalledTimes(mockUsers.length > 0 ? 6 : 0);
+  });
 });

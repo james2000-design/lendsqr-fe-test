@@ -29,9 +29,16 @@ export default function UserPage() {
   ];
 
   useEffect(() => {
-    const stored = localStorage.getItem("mockUsers");
-    if (stored) {
-      setAllUsers(JSON.parse(stored));
+    let parsed: User[] | null = null;
+    try {
+      const stored = localStorage.getItem("mockUsers");
+      if (stored) {
+        parsed = JSON.parse(stored);
+      }
+    } catch {}
+
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      setAllUsers(parsed);
     } else {
       const { users } = generateMockUsers(1, totalUsers);
       setAllUsers(users);
@@ -74,13 +81,19 @@ export default function UserPage() {
         ))}
       </div>
       <div className={styles.usersTableContainer}>
-        <UserTable users={paginatedUsers} onApplyFilters={setFilters} />
-        <Pagination
-          currentPage={currentPage}
-          pageSize={pageSize}
-          totalCount={filteredUsers.length}
-          onPageChange={setCurrentPage}
-        />
+        {filteredUsers.length === 0 ? (
+          <p>No users found</p>
+        ) : (
+          <>
+            <UserTable users={paginatedUsers} onApplyFilters={setFilters} />
+            <Pagination
+              currentPage={currentPage}
+              pageSize={pageSize}
+              totalCount={filteredUsers.length}
+              onPageChange={setCurrentPage}
+            />
+          </>
+        )}
       </div>
     </div>
   );

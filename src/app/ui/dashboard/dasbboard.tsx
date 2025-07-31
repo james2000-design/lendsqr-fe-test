@@ -28,13 +28,19 @@ export default function DashboardPage() {
   ];
 
   useEffect(() => {
-    const stored = localStorage.getItem("mockUsers");
-    if (stored) {
-      setAllUsers(JSON.parse(stored));
-    } else {
+    try {
+      const stored = localStorage.getItem("mockUsers");
+      if (stored) {
+        setAllUsers(JSON.parse(stored));
+      } else {
+        const { users } = generateMockUsers(1, totalUsers);
+        setAllUsers(users);
+      }
+    } catch (err) {
+      console.error("Invalid mockUsers data in localStorage:", err);
+      localStorage.removeItem("mockUsers");
       const { users } = generateMockUsers(1, totalUsers);
       setAllUsers(users);
-      localStorage.setItem("mockUsers", JSON.stringify(users));
     }
   }, []);
 

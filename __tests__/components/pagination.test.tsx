@@ -92,4 +92,32 @@ describe("Pagination Component", () => {
     fireEvent.click(screen.getByRole("button", { name: "<" }));
     expect(onPageChange).toHaveBeenCalledWith(1);
   });
+
+  it("disables all buttons when there are no results", () => {
+    render(
+      <Pagination
+        currentPage={1}
+        pageSize={10}
+        totalCount={0}
+        onPageChange={onPageChange}
+      />
+    );
+
+    expect(screen.getByText(/showing 0-0 out of 0/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "<" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: ">" })).toBeDisabled();
+  });
+
+  it("does not render ellipsis for small page counts", () => {
+    render(
+      <Pagination
+        currentPage={1}
+        pageSize={10}
+        totalCount={30}
+        onPageChange={onPageChange}
+      />
+    );
+
+    expect(screen.queryByText("...")).toBeNull();
+  });
 });

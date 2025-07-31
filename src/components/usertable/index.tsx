@@ -58,25 +58,33 @@ const UserTable: React.FC<UserTableProps> = ({ users, onApplyFilters }) => {
       </thead>
 
       <tbody>
-        {users.map((user) => (
-          <tr key={user.id}>
-            <td>{user.organization}</td>
-            <td>{user.username}</td>
-            <td>{user.email}</td>
-            <td>{user.phoneNumber}</td>
-            <td>{new Date(user.dateJoined).toLocaleDateString()}</td>
-            <td>
-              <StatusBadge status={user.status} />
-            </td>
-            <td className={styles.actionsCell}>
-              <UserActionsMenu
-                user={user}
-                onBlacklist={() => console.log("Blacklist", user.id)}
-                onActivate={() => console.log("Activate", user.id)}
-              />
+        {users.length === 0 ? (
+          <tr>
+            <td colSpan={7} style={{ textAlign: "center", padding: "1rem" }}>
+              No users found
             </td>
           </tr>
-        ))}
+        ) : (
+          users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.organization}</td>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+              <td>{user.phoneNumber}</td>
+              <td>{new Date(user.dateJoined).toLocaleDateString()}</td>
+              <td>
+                <StatusBadge status={user.status} />
+              </td>
+              <td className={styles.actionsCell}>
+                <UserActionsMenu
+                  user={user}
+                  onBlacklist={() => console.log("Blacklist", user.id)}
+                  onActivate={() => console.log("Activate", user.id)}
+                />
+              </td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );

@@ -10,6 +10,9 @@ import { generateMockUsers } from "@/app/lib/utils/mockData";
 
 beforeEach(() => {
   localStorage.clear();
+});
+beforeEach(() => {
+  localStorage.clear();
   jest.clearAllMocks();
 });
 
@@ -106,5 +109,53 @@ describe("UserPage", () => {
     await waitFor(() => {
       expect(screen.getByText(/^user5$/i)).toBeInTheDocument();
     });
+  });
+
+  it("shows 'No users found' when there are no users", async () => {
+    (generateMockUsers as jest.Mock).mockReturnValue({
+      users: [],
+      total: 0,
+    });
+
+    render(<UserPage />);
+
+    expect(await screen.findByText(/no users found/i)).toBeInTheDocument();
+  });
+
+  it("handles invalid JSON in localStorage gracefully", async () => {
+    localStorage.setItem("mockUsers", "{bad json}");
+
+    (generateMockUsers as jest.Mock).mockReturnValue({
+      users: mockUsers,
+      total: mockUsers.length,
+    });
+
+    render(<UserPage />);
+
+    expect(await screen.findByText(/^user0$/i)).toBeInTheDocument();
+  });
+
+  it("shows 'No users found' when filter has no matches", async () => {
+    (generateMockUsers as jest.Mock).mockReturnValue({
+      users: mockUsers,
+      total: mockUsers.length,
+    });
+
+    render(<UserPage />);
+
+    await screen.findByText(/^user0$/i);
+
+    const usernameHeader = screen.getByText(/username/i).closest("th")!;
+    const filterButton = within(usernameHeader).getByRole("button", {
+      name: /filter/i,
+    });
+    fireEvent.click(filterButton);
+
+    const searchInput = await screen.findByLabelText(/username/i);
+    fireEvent.change(searchInput, { target: { value: "noSuchUser" } });
+
+    fireEvent.click(screen.getByRole("button", { name: /apply/i }));
+
+    expect(await screen.findByText(/no users found/i)).toBeInTheDocument();
   });
 });

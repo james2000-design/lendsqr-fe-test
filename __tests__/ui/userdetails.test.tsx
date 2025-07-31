@@ -58,7 +58,6 @@ describe("UserDetails", () => {
       /john doe/i
     );
 
-    // Check referral text to confirm we loaded the right user
     expect(screen.getByText(/friend referral/i)).toBeInTheDocument();
   });
 
@@ -97,5 +96,21 @@ describe("UserDetails", () => {
     expect(screen.getByText(/education and employment/i)).toBeInTheDocument();
     expect(screen.getByText(/socials/i)).toBeInTheDocument();
     expect(screen.getByText(/guarantor/i)).toBeInTheDocument();
+  });
+
+  it("handles invalid JSON in localStorage gracefully", () => {
+    localStorage.setItem(`user_1`, "{invalid-json");
+
+    render(<UserDetails id="1" />);
+
+    expect(screen.getByText(/user data not found/i)).toBeInTheDocument();
+  });
+
+  it("handles missing fields in user object", () => {
+    localStorage.setItem(`user_1`, JSON.stringify({ id: "1" }));
+
+    render(<UserDetails id="1" />);
+
+    expect(screen.getByText(/user data not found/i)).toBeInTheDocument();
   });
 });
