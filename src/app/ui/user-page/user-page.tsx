@@ -69,7 +69,7 @@ export default function UserPage() {
   );
   return (
     <div className={styles.content}>
-      <h1>Users</h1>
+      <h2>Users</h2>
       <div className={styles.statsContainer}>
         {stats.map((stat, index) => (
           <UserCard

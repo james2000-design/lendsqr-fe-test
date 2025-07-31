@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 interface PaginationProps {
   currentPage: number;
@@ -67,7 +68,7 @@ const Pagination: React.FC<PaginationProps> = ({
           onClick={() => onPageChange(currentPage - 1)}
           disabled={disablePrev}
         >
-          &lt;
+          <MdNavigateBefore size={24} />
         </button>
 
         {generatePageNumbers().map((item, index) => {
@@ -93,7 +94,7 @@ const Pagination: React.FC<PaginationProps> = ({
           onClick={() => onPageChange(currentPage + 1)}
           disabled={disableNext}
         >
-          &gt;
+          <MdNavigateNext size={24} />
         </button>
       </div>
     </div>

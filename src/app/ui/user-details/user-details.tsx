@@ -44,7 +44,7 @@ const UserDetails = ({ id }: UserDetailsProps) => {
           onClick={() => router.push("/users")}
           className={styles.backButton}
         >
-          ← Back to Users
+          <IoIosArrowRoundBack size={32} /> Back to Users
         </button>
       </div>
     );
@@ -56,11 +56,11 @@ const UserDetails = ({ id }: UserDetailsProps) => {
         className={styles.backButton}
         onClick={() => router.push("/users")}
       >
-        <IoIosArrowRoundBack /> Back to Users
+        <IoIosArrowRoundBack size={32} /> Back to Users
       </button>
 
       <div className={styles.header}>
-        <h1>User Details</h1>
+        <h2>User Details</h2>
         <div className={styles.actionButtons}>
           <button className={styles.blacklistButton}>BLACKLIST USER</button>
           <button className={styles.activateButton}>ACTIVATE USER</button>
