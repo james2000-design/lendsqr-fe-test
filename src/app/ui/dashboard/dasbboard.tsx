@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
-import UserCard from "@/components/usercard/index";
-import UserTable from "@/components/usertable";
+import UserCard from "../../../components/usercard/index";
+import UserTable from "../../../components/usertable";
 import Pagination from "@/components/pagination";
 import { FilterFormValues } from "@/components/shared/filter-modal";
 import userIcon from "@/../../public/assets/images/users.png";
