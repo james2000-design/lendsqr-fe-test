@@ -18,18 +18,21 @@ export interface User {
   employmentStatus?: string;
   employmentSector?: string;
   employmentDuration?: string;
+  duration_in_month?: string;
   officeEmail?: string;
   monthlyIncome?: string;
   loanRepayment?: string;
   twitter?: string;
   facebook?: string;
   instagram?: string;
+  linkedin?: string;
   guarantor?: {
     fullName: string;
     phoneNumber: string;
     email: string;
     relationship: string;
   };
+  referral?: string;
   avatar?: string;
   userId?: string;
 }

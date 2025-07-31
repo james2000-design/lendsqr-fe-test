@@ -1,0 +1,48 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.menuButton {
+  background: $light-text;
+  border: none;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.menuList {
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  background-color: $background-color;
+  padding: 0.4rem 0;
+  min-width: 190px;
+  box-shadow: $shadow-md;
+}
+
+.menuItem {
+  padding: 1rem 1.5rem;
+  font-size: $font-size-sm;
+  color: $text-color;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba($primary-color, 0.05);
+  }
+}
+.menuIcon {
+  font-size: $font-size-md;
+  margin-right: 10px;
+}
+.divider {
+  margin: 0.2rem 0;
+  border-color: $border-color;
+}
+
+.blacklist {
+  color: $error-color;
+}
+
+.activate {
+  color: $secondary-color;
+}

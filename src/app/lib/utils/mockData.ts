@@ -20,12 +20,15 @@ interface User {
   employmentStatus?: string;
   employmentSector?: string;
   employmentDuration?: string;
+  duration_in_month?: string;
   officeEmail?: string;
   monthlyIncome?: string;
   loanRepayment?: string;
   twitter?: string;
   facebook?: string;
   instagram?: string;
+  linkedin?: string;
+  referral?: string;
   guarantor?: {
     fullName: string;
     phoneNumber: string;
@@ -120,6 +123,11 @@ export const generateMockUsers = (
         "2 years",
         "3+ years",
       ]),
+      duration_in_month: faker.helpers.arrayElement([
+        "12 month(s)",
+        "24 month(s)",
+        "36+ month(s)",
+      ]),
       officeEmail: faker.internet.email({
         firstName,
         lastName,
@@ -142,10 +150,13 @@ export const generateMockUsers = (
       twitter: `@${username}`,
       facebook: fullName,
       instagram: `@${username}`,
+      linkedin: fullName,
+      referral: faker.string.alphanumeric({ length: 6 }).toUpperCase(),
       guarantor: {
         fullName: `${faker.person.firstName()} ${faker.person.lastName()}`,
         phoneNumber: faker.phone.number({ style: "national" }),
         email: faker.internet.email(),
+
         relationship: faker.helpers.arrayElement([
           "Sister",
           "Brother",

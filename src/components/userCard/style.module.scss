@@ -7,7 +7,8 @@
   padding: $spacing-lg;
   box-shadow: $shadow-sm;
   transition: transform 0.3s, box-shadow 0.3s;
-
+  font-family: "Work Sans", "Source Sans Pro", "Nunito Sans", "Open Sans", Arial,
+    sans-serif;
   &:hover {
     transform: translateY(-5px);
     box-shadow: $shadow-md;

@@ -1,36 +1,7 @@
 @use "@/styles/variables" as *;
 @use "@/styles/mixins" as *;
 
-.dashboardContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.bodySection {
-  display: flex;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.mainContent {
-  flex: 1;
-  margin-left: 283px;
-  background-color: $background-color;
-  padding-top: 80px;
-  overflow-x: hidden;
-
-  @include respond(desktop) {
-    margin-left: 240px;
-  }
-
-  @include respond(tablet) {
-    margin-left: 0;
-  }
-}
-
-.content {
+.dashboardContent {
   padding: $spacing-xl $spacing-xxl;
 
   @include respond(tablet) {
@@ -52,10 +23,12 @@
 
   @include respond(desktop) {
     grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
   }
 
   @include respond(phone) {
     grid-template-columns: 1fr;
+    justify-items: center;
   }
 }
 

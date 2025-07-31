@@ -55,7 +55,7 @@ const Pagination: React.FC<PaginationProps> = ({
     <div className={styles.paginationWrapper}>
       <div className={styles.paginationInfo}>
         <span>
-          Showing {start}–{end} out of {totalCount}
+          Showing {start}-{end} out of {totalCount}
         </span>
       </div>
 
@@ -67,9 +67,9 @@ const Pagination: React.FC<PaginationProps> = ({
           &lt;
         </button>
 
-        {generatePageNumbers().map((item) =>
+        {generatePageNumbers().map((item, index) =>
           typeof item === "string" ? (
-            <span key={item} className={styles.ellipsis}>
+            <span key={index || item} className={styles.ellipsis}>
               {item}
             </span>
           ) : (

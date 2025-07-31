@@ -12,6 +12,8 @@
   left: 0;
   right: 0;
   z-index: 90;
+  font-family: "Work Sans", "Source Sans Pro", "Nunito Sans", "Open Sans", Arial,
+    sans-serif;
 
   @include respond(tablet) {
     padding: $spacing-md $spacing-lg;
@@ -116,6 +118,12 @@
       display: none;
     }
   }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
 }
 
 .mobileMenuButton {

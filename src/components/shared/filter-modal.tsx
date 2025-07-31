@@ -1,79 +1,182 @@
 "use client";
 
+import React, { useState } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
+  Box,
+  Button,
+  IconButton,
+  Popover,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
+import { IoFilterOutline } from "react-icons/io5";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Button } from "@chakra-ui/react/button";
-import { Input } from "@chakra-ui/react/input";
-import { Select } from "@chakra-ui/react/select";
-
-import { useForm } from "react-hook-form";
-
-interface FilterModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onApply: (filters: Record<string, string>) => void;
+export interface FilterFormValues {
+  organization?: string;
+  username?: string;
+  email?: string;
+  phoneNumber?: string;
+  dateJoined?: string;
+  status?: string;
 }
 
-export default function FilterModal({
-  isOpen,
-  onClose,
-  onApply,
-}: FilterModalProps) {
-  const { register, handleSubmit, reset } = useForm();
+interface FilterDropdownProps {
+  readonly onApply: (filters: FilterFormValues) => void;
+}
 
-  const handleApply = (data: any) => {
+export default function FilterDropdown({ onApply }: FilterDropdownProps) {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { register, handleSubmit, reset } = useForm<FilterFormValues>();
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => setAnchorEl(null);
+
+  const open = Boolean(anchorEl);
+
+  const onSubmit: SubmitHandler<FilterFormValues> = (data) => {
     onApply(data);
-    onClose();
+    handleClose();
+  };
+
+  const handleReset = () => {
+    reset();
+    onApply({});
+    handleClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="md">
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Filter Users</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <form onSubmit={handleSubmit(handleApply)}>
-            <Select
-              placeholder="Organization"
-              {...register("organization")}
-              mb={3}>
-              <option value="Lendsqr">Lendsqr</option>
-              <option value="Irorun">Irorun</option>
-            </Select>
+    <>
+      <IconButton onClick={handleClick} aria-label="filter">
+        <IoFilterOutline />
+      </IconButton>
 
-            <Input placeholder="Username" {...register("username")} mb={3} />
-            <Input placeholder="Email" {...register("email")} mb={3} />
-            <Input
-              placeholder="Phone Number"
+      <Popover
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              padding: 2,
+              width: 300,
+              borderRadius: 3,
+            },
+          },
+        }}
+      >
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box mb={3}>
+            <FormControl fullWidth>
+              <InputLabel id="org-label">Organization</InputLabel>
+              <Select
+                labelId="org-label"
+                {...register("organization")}
+                defaultValue=""
+                label="Organization"
+              >
+                <MenuItem value="">Select</MenuItem>
+                <MenuItem value="Lendsqr">Lendsqr</MenuItem>
+                <MenuItem value="Irorun">Irorun</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
+          <Box mb={3}>
+            <TextField fullWidth label="Username" {...register("username")} />
+          </Box>
+
+          <Box mb={3}>
+            <TextField fullWidth label="Email" {...register("email")} />
+          </Box>
+
+          <Box mb={3}>
+            <TextField
+              fullWidth
+              label="Phone Number"
               {...register("phoneNumber")}
-              mb={3}
             />
-            <Input type="date" {...register("dateJoined")} mb={3} />
+          </Box>
 
-            <Select placeholder="Status" {...register("status")} mb={3}>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-              <option value="blacklisted">Blacklisted</option>
-              <option value="pending">Pending</option>
-            </Select>
+          <Box mb={3}>
+            <TextField
+              fullWidth
+              label="Date Joined"
+              type="date"
+              {...register("dateJoined")}
+              sx={{
+                "& .MuiInputLabel-root": {
+                  transform: "translate(14px, -9px) scale(0.75)",
+                },
+              }}
+            />
+          </Box>
 
-            <Button colorScheme="blue" type="submit" w="full" mb={2}>
-              Apply Filter
-            </Button>
-            <Button variant="outline" w="full" onClick={() => reset()}>
+          <Box mb={2}>
+            <FormControl fullWidth>
+              <InputLabel id="status-label">Status</InputLabel>
+              <Select
+                labelId="status-label"
+                {...register("status")}
+                defaultValue=""
+                label="Status"
+              >
+                <MenuItem value="">Select</MenuItem>
+                <MenuItem value="active">Active</MenuItem>
+                <MenuItem value="inactive">Inactive</MenuItem>
+                <MenuItem value="blacklisted">Blacklisted</MenuItem>
+                <MenuItem value="pending">Pending</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
+          <Box mt={3} display="flex" justifyContent="space-around">
+            <Button
+              variant="outlined"
+              onClick={handleReset}
+              sx={{
+                color: "#000",
+                fontSize: "1rem",
+                px: 4,
+                py: 1,
+              }}
+            >
               Reset
             </Button>
-          </form>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                backgroundColor: "#39CDCC",
+                color: "#fff",
+                fontSize: "1rem",
+                px: 4,
+                py: 1,
+                "&:hover": {
+                  backgroundColor: "#115293",
+                },
+              }}
+            >
+              Apply
+            </Button>
+          </Box>
+        </form>
+      </Popover>
+    </>
   );
 }

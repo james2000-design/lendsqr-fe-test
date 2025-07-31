@@ -8,19 +8,58 @@
   height: calc(100vh - 80px);
   position: fixed;
   top: 80px;
+  left: 0;
   overflow-y: auto;
   z-index: 100;
-
-  @include respond(desktop) {
-    width: 240px;
-  }
-
+  transition: transform 0.3s ease;
+  font-family: "Work Sans", "Source Sans Pro", "Nunito Sans", "Open Sans", Arial,
+    sans-serif;
   @include respond(tablet) {
+    height: 100vh;
+    top: 0;
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
-
     &.open {
       transform: translateX(0);
+    }
+  }
+}
+
+.overlay {
+  display: none;
+}
+
+@include respond(tablet) {
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 99;
+
+    &.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+@include respond(tablet) {
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 99;
+
+    &.show {
+      opacity: 1;
+      pointer-events: all;
     }
   }
 }
@@ -37,7 +76,7 @@
     color: $text-color;
   }
 
-  img {
+  svg {
     transition: transform 0.3s;
   }
 
@@ -60,9 +99,8 @@
   margin-bottom: $spacing-xl;
   border-left: 3px solid transparent;
   cursor: pointer;
-
   span {
-    font-size: $font-size-md;
+    font-size: $font-size-xl;
     color: $text-color;
   }
 
@@ -78,24 +116,28 @@
 
     span {
       color: $primary-color;
-      font-weight: 500;
+      font-weight: bold;
     }
   }
 }
 
 .menuSection {
   margin-bottom: $spacing-xl;
-
+  font-family: "Work Sans", "Source Sans Pro", "Nunito Sans", "Open Sans", Arial,
+    sans-serif;
   h4 {
     font-size: $font-size-xs;
     text-transform: uppercase;
     color: $text-color;
+    text-align: left;
     padding: 0 $spacing-xl $spacing-md;
   }
 }
 
 .menuList {
   list-style: none;
+  font-family: "Work Sans", "Source Sans Pro", "Nunito Sans", "Open Sans", Arial,
+    sans-serif;
 }
 
 .menuItem {
@@ -131,4 +173,31 @@
       }
     }
   }
+}
+.sidebarFooter {
+  margin-top: auto;
+  padding: $spacing-xl;
+  border-top: 1px solid #e5e5e5;
+}
+
+.logoutLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #213f7d;
+  font-weight: 500;
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-xl;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.version {
+  text-align: left;
+  font-size: $spacing-md;
+  color: #666;
+  padding-top: $spacing-lg;
 }

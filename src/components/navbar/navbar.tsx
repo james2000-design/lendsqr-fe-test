@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
@@ -7,13 +9,22 @@ import Logo from "@/../../public/assets/images/logo.png";
 import Search from "@/../../public/assets/images/Vector.png";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { FiMenu } from "react-icons/fi";
 
-const Navbar = () => {
+interface NavbarProps {
+  onMenuClick?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
   return (
     <nav className={styles.navbar}>
-      <div>
-        <Image src={Logo} alt="Logo"></Image>
+      <div className={styles.left}>
+        <button className={styles.mobileMenuButton} onClick={onMenuClick}>
+          <FiMenu size={22} />
+        </button>
+        <Image src={Logo} alt="Logo" />
       </div>
+
       <div className={styles.searchBar}>
         <input type="text" placeholder="Search for anything" />
         <button>

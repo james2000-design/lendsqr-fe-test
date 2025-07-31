@@ -1,11 +1,14 @@
 @use "@/styles/variables" as *;
 @use "@/styles/mixins" as *;
 
-.userDetailsContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  overflow-x: hidden;
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-xl;
+
+  @include respond(tablet) {
+    padding: $spacing-lg;
+  }
 }
 
 .backButton {
@@ -15,12 +18,13 @@
   margin-bottom: $spacing-lg;
   cursor: pointer;
   font-size: $font-size-md;
+  background: none;
+  border: none;
 
   &:hover {
     color: $primary-color;
   }
 }
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -50,12 +54,13 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    cursor: pointer;
+    background: none;
   }
 
   .blacklistButton {
     border: 1px solid $error-color;
     color: $error-color;
-    background-color: transparent;
 
     &:hover {
       background-color: rgba($error-color, 0.1);
@@ -65,7 +70,6 @@
   .activateButton {
     border: 1px solid $secondary-color;
     color: $secondary-color;
-    background-color: transparent;
 
     &:hover {
       background-color: rgba($secondary-color, 0.1);
@@ -74,7 +78,6 @@
 
   @include respond(phone) {
     width: 100%;
-
     button {
       flex: 1;
       padding: $spacing-md;
@@ -100,27 +103,32 @@
   align-items: center;
   gap: $spacing-xl;
   margin-bottom: $spacing-xl;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 
   @include respond(desktop) {
     flex-wrap: wrap;
+    justify-content: center;
     gap: $spacing-lg;
+    text-align: center;
   }
 
   .avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    background-color: rgba(225, 230, 239, 0.938);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-lg;
+    color: $text-color;
   }
 
   .nameSection {
-    flex: 1;
+    flex: 0 auto;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
 
     h2 {
       font-size: $font-size-xl;
@@ -145,6 +153,7 @@
 
     .stars {
       color: $warning-color;
+      font-size: $font-size-md;
     }
   }
 
@@ -163,6 +172,7 @@
 
 .tabs {
   display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid $border-color;
   margin-top: $spacing-xl;
 
@@ -170,7 +180,10 @@
     padding: $spacing-md $spacing-xl;
     color: $text-color;
     font-weight: 600;
+    background: none;
+    border: none;
     position: relative;
+    cursor: pointer;
 
     &.activeTab {
       color: $secondary-color;
@@ -221,7 +234,6 @@
     color: $primary-color;
     margin-bottom: $spacing-lg;
     padding-bottom: $spacing-sm;
-    border-bottom: 1px solid $border-color;
   }
 }
 
@@ -229,6 +241,24 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: $spacing-lg;
+  font-size: $font-size-xs;
+  padding-bottom: $spacing-xl;
+  border-bottom: 1px solid $border-color;
+
+  @include respond(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+  }
+}
+.detailsGrids {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+  font-size: $font-size-xs;
+  padding-bottom: $spacing-xl;
 
   @include respond(desktop) {
     grid-template-columns: repeat(2, 1fr);
@@ -251,5 +281,7 @@
     font-size: $font-size-md;
     color: $primary-color;
     font-weight: 500;
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 }
