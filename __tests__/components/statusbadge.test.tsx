@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import StatusBadge from "@/components/stausBadge/status-badge";
+import StatusBadge from "@/components/status-badge/status-badge";
 import styles from "@/components/stausBadge/style.module.scss";
 
 describe("StatusBadge", () => {

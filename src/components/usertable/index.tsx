@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { User } from "@/types/users";
-import StatusBadge from "@/components/stausBadge/status-badge";
+import StatusBadge from "@/components/status-badge/status-badge";
 import FilterDropdown, {
   FilterFormValues,
 } from "@/components/shared/filter-modal";
