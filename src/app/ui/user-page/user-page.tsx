@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "./style.module.scss";
-import UserCard from "@/components/usercard";
-import UserTable from "@/components/usertable";
+import UserCard from "@/components/usercard/index";
+import UserTable from "@/components/usertable/index";
 
 import userIcon from "@/../../public/assets/images/users.png";
 import activeUser from "@/../../public/assets/images/user.png";
