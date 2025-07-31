@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+##Lendsqr Frontend Assessment
+##Overview
 
-## Getting Started
+This project was developed as part of the Lendsqr Frontend Engineer Technical Assessment.  
+It implements a responsive web application that allows users to log in, view a dashboard, browse a list of users, and view detailed information for each user.
 
-First, run the development server:
+The application:
+
+- Fetches mock data for 500 users
+- Caches user details in LocalStorage to reduce API calls
+- Implements unit tests for critical UI components
+- Uses Next.js App Routerfor modern routing and server-side rendering
+- Matches the provided Figma design closely
+
+---
+
+## Tech Stack
+
+| Technology                       | Purpose       | Reason for Choice                                 |
+| -------------------------------- | ------------- | ------------------------------------------------- |
+| **Next.js (App Router)**         | Framework     | SEO-friendly, hybrid SSR/SSG, great DX            |
+| **TypeScript**                   | Type safety   | Prevents runtime errors, improves maintainability |
+| **SCSS Modules**                 | Styling       | Scoped styles, powerful mixins & nesting          |
+| **Chakra UI**                    | UI Components | Accessible, easy to style (used for menus)        |
+| **Material UI**                  | UI Components | Stable handling for dropdowns & modals            |
+| **React Testing Library + Jest** | Testing       | Ensures UI correctness                            |
+| **Faker.js**                     | Mock Data     | Generates realistic dummy user records            |
+
+## Installation & Setup
 
 ```bash
+# Clone repository
+git clone https://github.com/james2000-design/lendsqr-fe-test.git
+
+# Navigate into project
+cd lendsqr-fe-test
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build production version
+npm run build
+
+# Preview production build
+npm start
+
+# Run all tests
+npm run test
+
+# Run with coverage report
+npm run test -- --coverage
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
