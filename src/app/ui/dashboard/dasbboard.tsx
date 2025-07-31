@@ -68,7 +68,7 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.dashboardContent}>
-      <h1>Users</h1>
+      <h2>Users</h2>
 
       <div className={styles.statsContainer}>
         {stats.map((stat, index) => (

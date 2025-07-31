@@ -67,6 +67,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={disablePrev}
+          aria-label="Previous page"
         >
           <MdNavigateBefore size={24} />
         </button>
@@ -93,6 +94,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={disableNext}
+          aria-label="Next page"
         >
           <MdNavigateNext size={24} />
         </button>

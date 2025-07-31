@@ -81,19 +81,15 @@ export default function UserPage() {
         ))}
       </div>
       <div className={styles.usersTableContainer}>
-        {filteredUsers.length === 0 ? (
-          <p>No users found</p>
-        ) : (
-          <>
-            <UserTable users={paginatedUsers} onApplyFilters={setFilters} />
-            <Pagination
-              currentPage={currentPage}
-              pageSize={pageSize}
-              totalCount={filteredUsers.length}
-              onPageChange={setCurrentPage}
-            />
-          </>
-        )}
+        <div>
+          <UserTable users={paginatedUsers} onApplyFilters={setFilters} />
+          <Pagination
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalCount={filteredUsers.length}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       </div>
     </div>
   );

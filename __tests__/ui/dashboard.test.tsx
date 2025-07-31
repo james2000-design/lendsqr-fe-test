@@ -10,9 +10,6 @@ import DashboardPage from "@/app/ui/dashboard/dasbboard";
 
 beforeEach(() => {
   localStorage.clear();
-});
-beforeEach(() => {
-  localStorage.clear();
   jest.clearAllMocks();
 });
 

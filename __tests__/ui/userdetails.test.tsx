@@ -5,16 +5,13 @@ import { useRouter } from "next/navigation";
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
 }));
-
+const mockPush = jest.fn();
+beforeEach(() => {
+  localStorage.clear();
+  jest.clearAllMocks();
+  (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
+});
 describe("UserDetails", () => {
-  const mockPush = jest.fn();
-
-  beforeEach(() => {
-    localStorage.clear();
-    jest.clearAllMocks();
-    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
-  });
-
   const mockUser = {
     id: "1",
     fullName: "John Doe",
@@ -54,9 +51,9 @@ describe("UserDetails", () => {
 
     render(<UserDetails id="1" />);
 
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      /john doe/i
-    );
+    expect(
+      screen.getByRole("heading", { name: /john doe/i, level: 2 })
+    ).toBeInTheDocument();
 
     expect(screen.getByText(/friend referral/i)).toBeInTheDocument();
   });
@@ -66,9 +63,9 @@ describe("UserDetails", () => {
 
     render(<UserDetails id="1" />);
 
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
-      /john doe/i
-    );
+    expect(
+      screen.getByRole("heading", { name: /john doe/i, level: 2 })
+    ).toBeInTheDocument();
     expect(screen.getByText(/friend referral/i)).toBeInTheDocument();
   });
 
