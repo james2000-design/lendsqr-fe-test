@@ -26,7 +26,7 @@ jest.mock("@/components/shared/user-actions-menu", () => {
   return MockUserActionsMenu;
 });
 
-jest.mock("@/components/stausBadge/status-badge", () => {
+jest.mock("@/components/status-badge/status-badge", () => {
   const MockStatusBadge = ({ status }: { status: string }) => (
     <span>{status}</span>
   );
