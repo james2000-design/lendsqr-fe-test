@@ -52,6 +52,7 @@ export default function LoginPage() {
                 required
               />
               <button
+                type="button"
                 className={styles.showPassword}
                 onClick={() => setShowPassword((prev) => !prev)}
                 style={{ cursor: "pointer" }}
